@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:megamart/Constants/product_card.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -11,6 +12,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Container(
@@ -91,7 +93,6 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
               SizedBox(height: 20),
-              // Replaced ListView with SingleChildScrollView
               Column(
                 children: [
                   SingleChildScrollView(
@@ -100,15 +101,30 @@ class _HomePageState extends State<HomePage> {
                       children: [
                         Padding(
                           padding: const EdgeInsets.only(left: 20),
-                          child: ProductCard(),
+                          child: ProductCard(
+                              productName: "Natural Apple",
+                              productImage: "assets/images/apple.png",
+                              productPrice: 4.99,
+                              productDescription: "Apple is cool",
+                              productWeight: "7pcs"),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(left: 20),
-                          child: ProductCard(),
+                          child: ProductCard(
+                              productName: "Egg Pasta",
+                              productImage: "assets/images/eggpasta.png",
+                              productPrice: 4.99,
+                              productDescription: "Apple is cool",
+                              productWeight: "30gm"),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(left: 20),
-                          child: ProductCard(),
+                          child: ProductCard(
+                              productName: "Natural Apple",
+                              productImage: "assets/images/apple.png",
+                              productPrice: 4.99,
+                              productDescription: "Apple is cool",
+                              productWeight: "7pcs"),
                         ),
                       ],
                     ),
@@ -142,21 +158,27 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ],
                   ),
+                  SizedBox(
+                    height: 30,
+                  ),
                   SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
                     child: Row(
                       children: [
+                        ProductCard(
+                            productName: "Bell Pepper Red",
+                            productImage: "assets/images/pepper.png",
+                            productPrice: 4.99,
+                            productDescription: "Pepper is cool",
+                            productWeight: "1kg"),
                         Padding(
                           padding: const EdgeInsets.only(left: 20),
-                          child: ProductCard(),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 20),
-                          child: ProductCard(),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 20),
-                          child: ProductCard(),
+                          child: ProductCard(
+                              productName: "Ginger",
+                              productImage: "assets/images/adrak.png",
+                              productPrice: 4.99,
+                              productDescription: "Ginger is cool",
+                              productWeight: "250gm"),
                         ),
                       ],
                     ),
@@ -222,7 +244,14 @@ class _HomePageState extends State<HomePage> {
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.only(left: 20),
-                                    child: Text("Pulses"),
+                                    child: Text(
+                                      "Pulses",
+                                      style: TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.black,
+                                      ),
+                                    ),
                                   ),
                                 ],
                               ),
@@ -250,7 +279,14 @@ class _HomePageState extends State<HomePage> {
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.only(left: 20),
-                                    child: Text("Rice"),
+                                    child: Text(
+                                      "Rice",
+                                      style: TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.black,
+                                      ),
+                                    ),
                                   ),
                                 ],
                               ),
@@ -267,17 +303,20 @@ class _HomePageState extends State<HomePage> {
                     scrollDirection: Axis.horizontal,
                     child: Row(
                       children: [
+                        ProductCard(
+                            productName: "Beef Bone",
+                            productImage: "assets/images/meat.png",
+                            productPrice: 4.99,
+                            productDescription: "Big Bee Guy",
+                            productWeight: "1kg"),
                         Padding(
                           padding: const EdgeInsets.only(left: 20),
-                          child: ProductCard(),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 20),
-                          child: ProductCard(),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 20),
-                          child: ProductCard(),
+                          child: ProductCard(
+                              productName: "Broiler Chicken",
+                              productImage: "assets/images/chicken.png",
+                              productPrice: 4.99,
+                              productDescription: "Chicken is cool",
+                              productWeight: "1kg"),
                         ),
                       ],
                     ),
@@ -287,96 +326,6 @@ class _HomePageState extends State<HomePage> {
             ],
           ),
         ),
-      ),
-    );
-  }
-}
-
-class ProductCard extends StatelessWidget {
-  const ProductCard({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(15),
-        boxShadow: [],
-      ),
-      width: 175,
-      height: 250, // Fixed height for the product card
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // Image Section
-          Padding(
-            padding: const EdgeInsets.all(10),
-            child: Image.asset(
-              "assets/images/apple.png", // Replace with your image asset
-              fit: BoxFit.cover,
-              height: 90, // Set fixed height for the image
-              width: double.infinity, // Ensure the image takes full width
-            ),
-          ),
-          // Product Name and Details Section
-          Padding(
-            padding: const EdgeInsets.only(left: 10),
-            child: Text(
-              "Organic Banana", // Replace with dynamic product name
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-                color: Colors.black,
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 10),
-            child: Text(
-              "7pcs", // Replace with dynamic quantity
-              style: TextStyle(
-                fontSize: 14,
-                color: Colors.grey[600],
-              ),
-            ),
-          ),
-          SizedBox(height: 10),
-          // Price Section
-          Padding(
-            padding: const EdgeInsets.only(left: 10),
-            child: Text(
-              "\$4.99", // Replace with dynamic price
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-                color: Colors.green,
-              ),
-            ),
-          ),
-          SizedBox(height: 10),
-          // Add to Cart Button Section
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.lightGreen,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8), // Rounded button
-                ),
-              ),
-              onPressed: () {
-                // Handle add to cart action here
-              },
-              child: Text(
-                "Add to Cart",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 14,
-                ),
-              ),
-            ),
-          ),
-        ],
       ),
     );
   }
