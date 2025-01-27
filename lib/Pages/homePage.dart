@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:megamart/Constants/product_card.dart';
+import 'package:megamart/Constants/product_detail.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -101,30 +102,81 @@ class _HomePageState extends State<HomePage> {
                       children: [
                         Padding(
                           padding: const EdgeInsets.only(left: 20),
-                          child: ProductCard(
+                          child: GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => DetailPage(
+                                    productName: "Natural Apple",
+                                    productImage: "assets/images/apple.png",
+                                    productPrice: 4.99,
+                                    productDescription: "Apple is cool",
+                                    productWeight: "7pcs",
+                                  ),
+                                ),
+                              );
+                            },
+                            child: ProductCard(
                               productName: "Natural Apple",
                               productImage: "assets/images/apple.png",
                               productPrice: 4.99,
                               productDescription: "Apple is cool",
-                              productWeight: "7pcs"),
+                              productWeight: "7pcs",
+                            ),
+                          ),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(left: 20),
-                          child: ProductCard(
+                          child: GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => DetailPage(
+                                    productName: "Egg Pasta",
+                                    productImage: "assets/images/eggpasta.png",
+                                    productPrice: 4.99,
+                                    productDescription: "Egg is cool",
+                                    productWeight: "30gm",
+                                  ),
+                                ),
+                              );
+                            },
+                            child: ProductCard(
                               productName: "Egg Pasta",
                               productImage: "assets/images/eggpasta.png",
                               productPrice: 4.99,
-                              productDescription: "Apple is cool",
-                              productWeight: "30gm"),
+                              productDescription: "Egg is cool",
+                              productWeight: "30gm",
+                            ),
+                          ),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(left: 20),
-                          child: ProductCard(
+                          child: GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => DetailPage(
+                                    productName: "Natural Apple",
+                                    productImage: "assets/images/apple.png",
+                                    productPrice: 4.99,
+                                    productDescription: "Apple is cool",
+                                    productWeight: "7pcs",
+                                  ),
+                                ),
+                              );
+                            },
+                            child: ProductCard(
                               productName: "Natural Apple",
                               productImage: "assets/images/apple.png",
                               productPrice: 4.99,
                               productDescription: "Apple is cool",
-                              productWeight: "7pcs"),
+                              productWeight: "7pcs",
+                            ),
+                          ),
                         ),
                       ],
                     ),
@@ -165,20 +217,54 @@ class _HomePageState extends State<HomePage> {
                     scrollDirection: Axis.horizontal,
                     child: Row(
                       children: [
-                        ProductCard(
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => DetailPage(
+                                  productName: "Bell Pepper Red",
+                                  productImage: "assets/images/pepper.png",
+                                  productPrice: 4.99,
+                                  productDescription: "Pepper is cool",
+                                  productWeight: "1kg",
+                                ),
+                              ),
+                            );
+                          },
+                          child: ProductCard(
                             productName: "Bell Pepper Red",
                             productImage: "assets/images/pepper.png",
                             productPrice: 4.99,
                             productDescription: "Pepper is cool",
-                            productWeight: "1kg"),
+                            productWeight: "1kg",
+                          ),
+                        ),
                         Padding(
                           padding: const EdgeInsets.only(left: 20),
-                          child: ProductCard(
+                          child: GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => DetailPage(
+                                    productName: "Ginger",
+                                    productImage: "assets/images/adrak.png",
+                                    productPrice: 4.99,
+                                    productDescription: "Ginger is cool",
+                                    productWeight: "250gm",
+                                  ),
+                                ),
+                              );
+                            },
+                            child: ProductCard(
                               productName: "Ginger",
                               productImage: "assets/images/adrak.png",
                               productPrice: 4.99,
                               productDescription: "Ginger is cool",
-                              productWeight: "250gm"),
+                              productWeight: "250gm",
+                            ),
+                          ),
                         ),
                       ],
                     ),
@@ -303,20 +389,54 @@ class _HomePageState extends State<HomePage> {
                     scrollDirection: Axis.horizontal,
                     child: Row(
                       children: [
-                        ProductCard(
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => DetailPage(
+                                  productName: "Beef Bone",
+                                  productImage: "assets/images/meat.png",
+                                  productPrice: 4.99,
+                                  productDescription: "Big Beef Guy",
+                                  productWeight: "1kg",
+                                ),
+                              ),
+                            );
+                          },
+                          child: ProductCard(
                             productName: "Beef Bone",
                             productImage: "assets/images/meat.png",
                             productPrice: 4.99,
-                            productDescription: "Big Bee Guy",
-                            productWeight: "1kg"),
+                            productDescription: "Big Beef Guy",
+                            productWeight: "1kg",
+                          ),
+                        ),
                         Padding(
                           padding: const EdgeInsets.only(left: 20),
-                          child: ProductCard(
+                          child: GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => DetailPage(
+                                    productName: "Broiler Chicken",
+                                    productImage: "assets/images/chicken.png",
+                                    productPrice: 4.99,
+                                    productDescription: "Chicken is cool",
+                                    productWeight: "1kg",
+                                  ),
+                                ),
+                              );
+                            },
+                            child: ProductCard(
                               productName: "Broiler Chicken",
                               productImage: "assets/images/chicken.png",
                               productPrice: 4.99,
                               productDescription: "Chicken is cool",
-                              productWeight: "1kg"),
+                              productWeight: "1kg",
+                            ),
+                          ),
                         ),
                       ],
                     ),
