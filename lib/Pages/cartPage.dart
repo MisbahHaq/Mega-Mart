@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart'; // Import GetX
+import 'package:get/get.dart';
 import 'package:megamart/Constants/order_placed.dart';
+import 'package:megamart/Constants/product_card.dart';
 
 class CartPage extends StatefulWidget {
   @override
@@ -10,8 +11,8 @@ class CartPage extends StatefulWidget {
 class _CartPageState extends State<CartPage> {
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () async => false, // Disable back button
+    return PopScope(
+      canPop: false,
       child: Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
@@ -19,11 +20,14 @@ class _CartPageState extends State<CartPage> {
           centerTitle: true,
           title: Text(
             "My Cart",
-            style: TextStyle(color: Colors.black),
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
           ),
           elevation: 0,
           iconTheme: IconThemeData(color: Colors.black),
-          leading: Container(), // Remove back button icon
+          leading: Container(),
         ),
         body: Cart.items.isEmpty
             ? Center(
@@ -36,8 +40,6 @@ class _CartPageState extends State<CartPage> {
                 itemCount: Cart.items.length,
                 itemBuilder: (context, index) {
                   final product = Cart.items[index];
-
-                  // Calculate total price for each product (price * quantity)
                   double totalPrice = product.productPrice * product.quantity;
 
                   return Container(
@@ -51,7 +53,6 @@ class _CartPageState extends State<CartPage> {
                     ),
                     child: Row(
                       children: [
-                        // Product Image
                         ClipRRect(
                           borderRadius: BorderRadius.circular(8),
                           child: Image.asset(
@@ -62,13 +63,10 @@ class _CartPageState extends State<CartPage> {
                           ),
                         ),
                         SizedBox(width: 15),
-
-                        // Product Details and Add/Remove Buttons
                         Expanded(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              // Product Name and Close Icon
                               Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
@@ -101,13 +99,10 @@ class _CartPageState extends State<CartPage> {
                                 ),
                               ),
                               SizedBox(height: 10),
-
-                              // Add/Remove Buttons and Price in Same Row
                               Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  // Add/Remove Buttons with Border
                                   Row(
                                     children: [
                                       Container(
@@ -154,7 +149,6 @@ class _CartPageState extends State<CartPage> {
                                       ),
                                     ],
                                   ),
-                                  // Price
                                   Text(
                                     "\$${totalPrice.toStringAsFixed(2)}",
                                     style: TextStyle(
@@ -175,12 +169,9 @@ class _CartPageState extends State<CartPage> {
         floatingActionButton: FloatingActionButton.extended(
           backgroundColor: Colors.lightGreen,
           onPressed: () {
-            // Calculate the total amount when the checkout button is tapped
             double totalAmount = Cart.items.fold(0, (sum, product) {
               return sum + (product.productPrice * product.quantity);
             });
-
-            // Show bottom sheet when tapped
             showModalBottomSheet(
               context: context,
               shape: RoundedRectangleBorder(
@@ -203,12 +194,10 @@ class _CartPageState extends State<CartPage> {
                       SizedBox(
                         height: 20,
                       ),
-                      // Delivery and Payment Sections at the Top
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 8.0),
                         child: Column(
                           children: [
-                            // Delivery Section
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -235,7 +224,6 @@ class _CartPageState extends State<CartPage> {
                               ],
                             ),
                             SizedBox(height: 8),
-                            // Payment Section
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -256,7 +244,6 @@ class _CartPageState extends State<CartPage> {
                               ],
                             ),
                             SizedBox(height: 8),
-                            // Promo Code Section
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -283,7 +270,6 @@ class _CartPageState extends State<CartPage> {
                               ],
                             ),
                             SizedBox(height: 8),
-                            // Total Price Section
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -342,10 +328,8 @@ class _CartPageState extends State<CartPage> {
                       SizedBox(height: 20),
                       GestureDetector(
                         onTap: () {
-                          // Clear the cart and navigate to the OrderPlaced screen
                           Cart.items = [];
-                          Get.off(() =>
-                              OrderPlaced()); // Navigate to the OrderPlaced page
+                          Get.off(() => OrderPlaced());
                         },
                         child: Center(
                           child: Container(

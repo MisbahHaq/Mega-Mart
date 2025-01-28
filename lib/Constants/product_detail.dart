@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:megamart/Pages/cartPage.dart';
 
+// You can store the favorite items globally
+List<Product> favoriteItems = [];
+
 class DetailPage extends StatefulWidget {
   final String productName;
   final String productImage;
@@ -43,6 +46,16 @@ class _DetailPageState extends State<DetailPage> {
   void toggleFavorite() {
     setState(() {
       isFavorited = !isFavorited;
+
+      if (isFavorited) {
+        favoriteItems.add(Product(
+          productName: widget.productName,
+          productImage: widget.productImage,
+          productPrice: widget.productPrice,
+          productDescription: widget.productDescription,
+          productWeight: widget.productWeight,
+        ));
+      }
     });
   }
 
@@ -176,7 +189,7 @@ class _DetailPageState extends State<DetailPage> {
                         Padding(
                           padding: const EdgeInsets.only(right: 30),
                           child: Text(
-                            totalPrice.toStringAsFixed(2),
+                            '\$${totalPrice.toStringAsFixed(2)}',
                             style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.bold,

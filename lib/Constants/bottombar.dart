@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:megamart/Pages/cartPage.dart';
 import 'package:megamart/Pages/explorePage.dart';
+import 'package:megamart/Pages/favourite.dart';
 import 'package:megamart/Pages/homePage.dart';
 
 class BottomBar extends StatefulWidget {
@@ -17,6 +18,8 @@ class _BottomBarState extends State<BottomBar> {
     HomePage(),
     ExplorePage(),
     CartPage(),
+    // FavouritePage(),
+    FavoritesPage(),
   ];
 
   void _onItemTapped(int index) {

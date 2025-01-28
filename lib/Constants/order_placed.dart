@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart'; // Import GetX
+import 'package:get/get.dart';
 import 'package:megamart/Constants/bottombar.dart';
 
 class OrderPlaced extends StatefulWidget {
@@ -12,10 +12,8 @@ class OrderPlaced extends StatefulWidget {
 class _OrderPlacedState extends State<OrderPlaced> {
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () async {
-        return false; // Prevent back navigation
-      },
+    return PopScope(
+      canPop: false,
       child: Scaffold(
         backgroundColor: Colors.white,
         body: Padding(
@@ -41,9 +39,7 @@ class _OrderPlacedState extends State<OrderPlaced> {
               ),
               SizedBox(height: 220),
               GestureDetector(
-                onTap: () {
-                  // Add track order functionality here if needed
-                },
+                onTap: () {},
                 child: Container(
                   width: double.infinity,
                   height: 70,
@@ -66,9 +62,7 @@ class _OrderPlacedState extends State<OrderPlaced> {
               SizedBox(height: 16),
               GestureDetector(
                 onTap: () {
-                  // Use GetX to navigate back to the home page
-                  Get.off(() =>
-                      BottomBar()); // Replace the current page with BottomBar
+                  Get.off(() => BottomBar());
                 },
                 child: Container(
                   width: double.infinity,
