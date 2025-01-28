@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:megamart/Pages/cartPage.dart';
 
 class DetailPage extends StatefulWidget {
   final String productName;
@@ -21,20 +22,16 @@ class DetailPage extends StatefulWidget {
 }
 
 class _DetailPageState extends State<DetailPage> {
-  // Initial quantity for the product
   double productQuantity = 1;
 
-  // Track if the product is favorited
   bool isFavorited = false;
 
-  // Method to increase quantity
   void increaseQuantity() {
     setState(() {
       productQuantity++;
     });
   }
 
-  // Method to decrease quantity
   void decreaseQuantity() {
     if (productQuantity > 1) {
       setState(() {
@@ -43,16 +40,14 @@ class _DetailPageState extends State<DetailPage> {
     }
   }
 
-  // Method to toggle favorite
   void toggleFavorite() {
     setState(() {
-      isFavorited = !isFavorited; // Toggle the favorite state
+      isFavorited = !isFavorited;
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    // Calculate the total price based on the quantity
     double totalPrice = widget.productPrice * productQuantity;
 
     return Scaffold(
@@ -292,14 +287,33 @@ class _DetailPageState extends State<DetailPage> {
                       borderRadius: BorderRadius.circular(15),
                     ),
                     child: Center(
+                      child: GestureDetector(
+                        onTap: () {
+                          Cart.items.add(Product(
+                            productName: widget.productName,
+                            productImage: widget.productImage,
+                            productPrice: widget.productPrice,
+                            productDescription: widget.productDescription,
+                            productWeight: widget.productWeight,
+                          ));
+
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(
+                                  '${widget.productName} has been added to the basket!'),
+                            ),
+                          );
+                        },
                         child: Text(
-                      'Add to Basket',
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.normal,
-                        color: Colors.white,
+                          'Add to Basket',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.normal,
+                            color: Colors.white,
+                          ),
+                        ),
                       ),
-                    )),
+                    ),
                   ),
                 ],
               ),

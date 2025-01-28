@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:megamart/Pages/cartPage.dart';
 import 'package:megamart/Pages/explorePage.dart';
 import 'package:megamart/Pages/homePage.dart';
 
@@ -15,6 +16,7 @@ class _BottomBarState extends State<BottomBar> {
   final List<Widget> _pages = [
     HomePage(),
     ExplorePage(),
+    CartPage(),
   ];
 
   void _onItemTapped(int index) {

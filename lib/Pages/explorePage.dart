@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:megamart/Pages/beveragesPage.dart';
+import 'package:megamart/Pages/eggPage.dart';
 
 class ExplorePage extends StatefulWidget {
   const ExplorePage({super.key});
@@ -102,10 +103,16 @@ class _ExplorePageState extends State<ExplorePage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    Image.asset(
-                      "assets/images/b5.png",
-                      width: 175,
-                      height: 190,
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => EggPage()));
+                      },
+                      child: Image.asset(
+                        "assets/images/b5.png",
+                        width: 175,
+                        height: 190,
+                      ),
                     ),
                     Image.asset(
                       "assets/images/b6.png",
