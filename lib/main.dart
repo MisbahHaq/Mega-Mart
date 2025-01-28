@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:megamart/Constants/bottombar.dart';
 import 'package:megamart/Constants/order_placed.dart';
 import 'package:megamart/Constants/product_detail.dart';
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       home: BottomBar(),
     );
