@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:megamart/Constants/bottombar.dart';
+import 'package:megamart/Constants/order_placed.dart';
 import 'package:megamart/Constants/product_detail.dart';
 import 'package:megamart/Pages/beveragesPage.dart';
 import 'package:megamart/Pages/cartPage.dart';
