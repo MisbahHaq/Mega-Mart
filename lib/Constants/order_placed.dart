@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:megamart/Constants/bottombar.dart';
+import 'package:megamart/Constants/order_page.dart';
 
 class OrderPlaced extends StatefulWidget {
   const OrderPlaced({super.key});
@@ -39,7 +40,10 @@ class _OrderPlacedState extends State<OrderPlaced> {
               ),
               SizedBox(height: 220),
               GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => OrderPage()));
+                },
                 child: Container(
                   width: double.infinity,
                   height: 70,
