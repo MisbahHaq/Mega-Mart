@@ -167,6 +167,11 @@ class _CartPageState extends State<CartPage> {
       floatingActionButton: FloatingActionButton.extended(
         backgroundColor: Colors.lightGreen,
         onPressed: () {
+          // Calculate the total amount when the checkout button is tapped
+          double totalAmount = Cart.items.fold(0, (sum, product) {
+            return sum + (product.productPrice * product.quantity);
+          });
+
           // Show bottom sheet when tapped
           showModalBottomSheet(
             context: context,
@@ -174,231 +179,184 @@ class _CartPageState extends State<CartPage> {
               borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
             ),
             builder: (context) {
-              double totalAmount = Cart.items.fold(0, (sum, product) {
-                return sum + (product.productPrice * product.quantity);
-              });
-
               return Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          "Checkout",
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        GestureDetector(
-                            onTap: () {
-                              Navigator.pop(context);
-                            },
-                            child: Icon(Icons.close_rounded))
-                      ],
+                    Text(
+                      "CheckOut",
+                      style: TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                    SizedBox(height: 10),
-                    ...Cart.items.map((product) {
-                      return Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 4.0),
-                        child: Column(
+                    SizedBox(
+                      height: 20,
+                    ),
+                    // Delivery and Payment Sections at the Top
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 8.0),
+                      child: Column(
+                        children: [
+                          // Delivery Section
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                "Delivery",
+                                style: TextStyle(fontSize: 16),
+                              ),
+                              Row(
+                                children: [
+                                  Text(
+                                    "Select Method",
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 14,
+                                    ),
+                                  ),
+                                  SizedBox(width: 5),
+                                  Icon(
+                                    Icons.arrow_forward_ios_rounded,
+                                    size: 16,
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 8),
+                          // Payment Section
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                "Payment",
+                                style: TextStyle(fontSize: 16),
+                              ),
+                              Row(
+                                children: [
+                                  Image.asset("assets/images/card.png"),
+                                  SizedBox(width: 5),
+                                  Icon(
+                                    Icons.arrow_forward_ios_rounded,
+                                    size: 16,
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 8),
+                          // Promo Code Section
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                "Promo Code",
+                                style: TextStyle(fontSize: 16),
+                              ),
+                              Row(
+                                children: [
+                                  Text(
+                                    "Pick discount",
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 14,
+                                    ),
+                                  ),
+                                  SizedBox(width: 5),
+                                  Icon(
+                                    Icons.arrow_forward_ios_rounded,
+                                    size: 16,
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 8),
+                          // Total Price Section
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                "Total Price",
+                                style: TextStyle(fontSize: 16),
+                              ),
+                              Text(
+                                "\$${totalAmount.toStringAsFixed(2)}",
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.green,
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 16),
+                        ],
+                      ),
+                    ),
+                    // Terms and Conditions Section
+                    Column(
+                      children: [
+                        Row(
                           children: [
-                            Container(
-                              padding: EdgeInsets.symmetric(
-                                  vertical: 12, horizontal: 10),
-                              decoration: BoxDecoration(
-                                border: Border(
-                                  bottom: BorderSide(
-                                      color: Colors.grey.shade300, width: 1),
-                                ),
-                              ),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    "Delivery",
-                                    style: TextStyle(
-                                        fontSize: 16, color: Colors.black87),
-                                  ),
-                                  Row(
-                                    children: [
-                                      Text(
-                                        "Select Method",
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 14,
-                                        ),
-                                      ),
-                                      SizedBox(width: 5),
-                                      Icon(
-                                        Icons.arrow_forward_ios_rounded,
-                                        size: 16,
-                                      ),
-                                    ],
-                                  ),
-                                ],
+                            Text(
+                              "By placing an order you agree to our",
+                              style: TextStyle(
+                                color: Colors.grey,
+                                fontWeight: FontWeight.w500,
                               ),
                             ),
-                            Container(
-                              padding: EdgeInsets.symmetric(
-                                  vertical: 12, horizontal: 10),
-                              decoration: BoxDecoration(
-                                border: Border(
-                                  bottom: BorderSide(
-                                      color: Colors.grey.shade300, width: 1),
-                                ),
-                              ),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    "Payment",
-                                    style: TextStyle(
-                                        fontSize: 16, color: Colors.black87),
-                                  ),
-                                  Row(
-                                    children: [
-                                      Image.asset("assets/images/card.png"),
-                                      SizedBox(width: 5),
-                                      Icon(
-                                        Icons.arrow_forward_ios_rounded,
-                                        size: 16,
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Container(
-                              padding: EdgeInsets.symmetric(
-                                  vertical: 12, horizontal: 10),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    "Promo Code",
-                                    style: TextStyle(
-                                        fontSize: 16, color: Colors.black87),
-                                  ),
-                                  Row(
-                                    children: [
-                                      Text(
-                                        "Pick discount",
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 14,
-                                        ),
-                                      ),
-                                      SizedBox(width: 5),
-                                      Icon(
-                                        Icons.arrow_forward_ios_rounded,
-                                        size: 16,
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Container(
-                              padding: EdgeInsets.symmetric(
-                                  vertical: 12, horizontal: 10),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    "Total",
-                                    style: TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  Text(
-                                    "\$${totalAmount.toStringAsFixed(2)}",
-                                    style: TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Column(
-                              children: [
-                                Row(
-                                  children: [
-                                    Text(
-                                      "By placing an order you agree to our",
-                                      style: TextStyle(
-                                        color: Colors.grey,
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                Row(
-                                  children: [
-                                    Text(
-                                      "Terms ",
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.black,
-                                      ),
-                                    ),
-                                    Text("And"),
-                                    Text(
-                                      " Conditions",
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.black,
-                                      ),
-                                    )
-                                  ],
-                                )
-                              ],
-                            )
                           ],
                         ),
-                      );
-                    }).toList(),
+                        Row(
+                          children: [
+                            Text(
+                              "Terms ",
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black,
+                              ),
+                            ),
+                            Text("And"),
+                            Text(
+                              " Conditions",
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black,
+                              ),
+                            )
+                          ],
+                        )
+                      ],
+                    ),
                     SizedBox(height: 20),
+                    // Place Order Button at the Bottom
                     GestureDetector(
                       onTap: () {
-                        Navigator.pop(context); // Close the drawer
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text("Checkout completed!")),
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => OrderPlaced()),
                         );
                       },
-                      child: GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => OrderPlaced()));
-                        },
-                        child: Center(
-                          child: Container(
-                            width: 365,
-                            height: 70,
-                            decoration: BoxDecoration(
-                              color: Colors.lightGreen,
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                            child: Center(
-                              child: Text(
-                                "Place Order",
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                  fontSize: 22,
-                                ),
+                      child: Center(
+                        child: Container(
+                          width: 365,
+                          height: 70,
+                          decoration: BoxDecoration(
+                            color: Colors.lightGreen,
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          child: Center(
+                            child: Text(
+                              "Place Order",
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                                fontSize: 22,
                               ),
                             ),
                           ),
