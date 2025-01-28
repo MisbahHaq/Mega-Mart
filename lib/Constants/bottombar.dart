@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:megamart/Pages/explorePage.dart';
 import 'package:megamart/Pages/homePage.dart';
 
 class BottomBar extends StatefulWidget {
@@ -13,6 +14,7 @@ class _BottomBarState extends State<BottomBar> {
 
   final List<Widget> _pages = [
     HomePage(),
+    ExplorePage(),
   ];
 
   void _onItemTapped(int index) {
