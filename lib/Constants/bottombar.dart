@@ -3,6 +3,7 @@ import 'package:megamart/Pages/cartPage.dart';
 import 'package:megamart/Pages/explorePage.dart';
 import 'package:megamart/Pages/favourite.dart';
 import 'package:megamart/Pages/homePage.dart';
+import 'package:megamart/Pages/profile.dart';
 
 class BottomBar extends StatefulWidget {
   const BottomBar({super.key});
@@ -18,8 +19,8 @@ class _BottomBarState extends State<BottomBar> {
     HomePage(),
     ExplorePage(),
     CartPage(),
-    // FavouritePage(),
     FavoritesPage(),
+    ProfilePage(),
   ];
 
   void _onItemTapped(int index) {

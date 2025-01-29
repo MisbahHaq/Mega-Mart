@@ -9,6 +9,7 @@ import 'package:megamart/Pages/cartPage.dart';
 import 'package:megamart/Pages/eggPage.dart';
 import 'package:megamart/Pages/explorePage.dart';
 import 'package:megamart/Pages/homePage.dart';
+import 'package:megamart/Pages/profile.dart';
 
 void main() {
   runApp(const MyApp());
