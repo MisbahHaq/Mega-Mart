@@ -66,7 +66,10 @@ class _OrderPlacedState extends State<OrderPlaced> {
               SizedBox(height: 16),
               GestureDetector(
                 onTap: () {
-                  Get.off(() => BottomBar());
+                  Get.off(() => BottomBar(
+                        name: 'User Name',
+                        email: '',
+                      ));
                 },
                 child: Container(
                   width: double.infinity,

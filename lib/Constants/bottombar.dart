@@ -6,7 +6,10 @@ import 'package:megamart/Pages/homePage.dart';
 import 'package:megamart/Pages/profile.dart';
 
 class BottomBar extends StatefulWidget {
-  const BottomBar({super.key});
+  final String name;
+  final String email;
+
+  const BottomBar({super.key, required this.name, required this.email});
 
   @override
   State<BottomBar> createState() => _BottomBarState();

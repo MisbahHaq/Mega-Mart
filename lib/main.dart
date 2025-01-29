@@ -1,17 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:megamart/Constants/bottombar.dart';
-import 'package:megamart/Constants/order_page.dart';
-import 'package:megamart/Constants/order_placed.dart';
-import 'package:megamart/Constants/product_detail.dart';
-import 'package:megamart/Pages/beveragesPage.dart';
-import 'package:megamart/Pages/cartPage.dart';
-import 'package:megamart/Pages/eggPage.dart';
-import 'package:megamart/Pages/explorePage.dart';
-import 'package:megamart/Pages/homePage.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:megamart/OnBoarding/login.dart';
+import 'package:megamart/OnBoarding/splash.dart';
 import 'package:megamart/Pages/profile.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp(
+    options: FirebaseOptions(
+      apiKey: "AIzaSyBA_aureSlJHC9PjrKdiOJVgkPM_4oUFzE",
+      authDomain: "mega-mart-30566.firebaseapp.com",
+      projectId: "mega-mart-30566",
+      storageBucket: "mega-mart-30566.firebasestorage.app",
+      messagingSenderId: "1094641258892",
+      appId: "1:1094641258892:web:b64513308bed5422e386a9",
+      measurementId: "G-NTDPQD4PG2",
+    ),
+  );
+
   runApp(const MyApp());
 }
 
@@ -22,7 +30,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      home: BottomBar(),
+      home: SplashScreen(),
     );
   }
 }
